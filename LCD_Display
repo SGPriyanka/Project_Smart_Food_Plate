@@ -1,0 +1,8 @@
+def displayWelcome()
+    print("Welcome, place your food and press button")
+def displayWeight()
+    print("Weight is displayed")
+def displayWelcome2()
+    print("please place your food again and press button")
+def displayNutritionValues()
+    print ("print nutrition values")
