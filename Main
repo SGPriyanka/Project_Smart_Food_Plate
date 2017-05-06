@@ -1,0 +1,25 @@
+import picamera
+import sys
+
+while(1):
+    LCD.displayWelcome()
+    if (apin==high):
+        calculateWeight()
+	w=receiveWeight()
+	LCD.displayWeight(w)
+	delay(5)
+	camera=picamera.PiCamera()
+	img=camera.capture()
+	fid=Imageprocessing.processImage(img)
+	templist=Nutrition.getValues(fid)
+	c1=w*templist[0]
+	c2=w*templist[1]
+	c3=w*templist[2]
+	c4=w*templist[3]
+	Nutrition.setConsumedValues(c1,c2,c3,c4)
+	LCD.displayNutritionValues()
+    else:
+        LCD.displayWelcome2()
+	
+
+    
