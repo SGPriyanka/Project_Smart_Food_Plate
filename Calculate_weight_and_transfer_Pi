@@ -1,0 +1,65 @@
+
+int a =0;
+int fsrPin = 0;     
+int fsrReading; 
+int buttonpress=8;
+int sum=0;
+int avg=0;
+int out=9;
+char dataString[50] = {0};
+int res;
+int cin;
+
+
+
+int count;
+char header[20]={0};
+
+
+void setup() {
+  Serial.begin(9600);
+  pinMode(buttonpress,(INPUT));
+  pinMode(out,(OUTPUT));
+  
+}
+
+void loop() {
+ 
+sum=0;
+ if(digitalRead(buttonpress))
+ {
+   digitalWrite(out,HIGH);
+ }
+ else
+ {
+   digitalWrite(out,LOW);
+ }
+  
+  
+  while (count<30 && (digitalRead(out)))
+  {
+    
+    digitalWrite(out,HIGH);
+ 
+    digitalWrite(buttonpress,HIGH);
+    count++;
+    
+    avg=0;
+    
+   
+  fsrReading = analogRead(fsrPin);
+  sum=sum+fsrReading;
+  if(count==30)
+  {
+    res=sum;
+  }
+  }
+  count=0;
+  cin=int(res/30);
+  sprintf(header,"%02X",255);
+  sprintf(dataString,"%02X",cin); 
+  Serial.print(header);
+  Serial.println(dataString);  // send the data
+  digitalWrite(buttonpress,LOW);
+ }
+
